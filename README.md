@@ -72,6 +72,7 @@ Features
 - Email alerts for suspicious activity
 - Editable dictionaries and book pages
 - Secure lock and unlock system
+- languge "thing"
 
 Author
 ------
