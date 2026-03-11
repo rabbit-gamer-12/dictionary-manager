@@ -681,141 +681,141 @@ if locked:
 
 while True:
     
-    if email == "":
-        em1 = input("pleases enter your email ")
-        em2 = input("please confirm your email ")
-        codes_passwords["email_main"] = em2
-        update("email")
+        if email == "":
+            em1 = input("pleases enter your email ")
+            em2 = input("please confirm your email ")
+            codes_passwords["email_main"] = em2
+            update("email")
 
-    if password == "":
-        pe1 = input("please enter a password ")
-        pe2 = input("please conferm password ")
-        if pe1 == pe2:
-            codes_passwords["password_main"] = pe1
-            password = pe1
-            update("password")
-    numb = 1
-    for num in available_dicts_and_actions:
-        print("-", numb, num)
-        numb += 1
-    input_dict = input("what dictionary or action do you want? ").strip().lower()
-    numb = 0
-
-    if input_dict in ["stop", "10"]:
-        update("all dictionaries")
-        print("Goodbye!")
-        time.sleep(0.5)
-        os.system("cls" if os.name == "nt" else "clear")
-        break
-    elif attempts == 4:
-            print("password entered too many times incorrectly")
-            alert_email()
-            exit()
-    
-    elif input_dict in ("dictionary", "1"):
-        find_dictionary(dictionary_2)
-    elif input_dict in ("book links", "2"):
-        find_dict(book_links)
-    elif input_dict in ("codes", "passwords", "3"):
-        
-        find_dict(codes_passwords)
-    elif input_dict in ("book pages", "4"):
-        find_book_pages()
-    elif input_dict in ("windows shortcuts", "5"):
-        find_dict(windows_shortcuts)
-    elif input_dict in ("languages", "6"):
-        translate_language()
-    elif input_dict in ["add to", "7"]:
-        dictionary_add = input("what dictionary do you want to add to? ")
-        if dictionary_add in available_dicts or dictionary_add in available_numbers:
-            
-            if dictionary_add in ["dictionary", "1"]:
-                add(dictionary_2, "dictionary")
-            elif dictionary_add in ["book links", "2"]:
-                add(book_links, "book links")
-            elif dictionary_add in ["book pages", "4"]:
-                add(book_pages, "book pages")
-            elif dictionary_add in ["windows shortcuts", "5"]:
-                add(windows_shortcuts, "windows shortcuts")
-            elif dictionary_add in ["languages", "6"]:
-                add(languages, "languages")
-            
-
-            elif dictionary_add in ["codes", "passwords", "3"]:
-                pin = input("pleass enter password: ")
-                os.system("cls" if os.name == "nt" else "clear")
-                if attempts >= 4:
-                    alert_email()
-                if pin == password:
-                    alert("add")
-                    add(codes_passwords, "codes_passwords")
-                    
-                else:
-                    print("accses denied")
-                    attempts += 1
-                    codes_passwords["failed_attempts"] += 1
-                    update()
-        else:
-            print("dictionary not found")
-            print("available dictionaries")
-            for i in available_dicts:
-                print("-", i)
-    
-    elif input_dict in ["eddit", "8"]:
-        dictionary_eddit = input("what dictionary do you want to eddit ")
-        if dictionary_eddit in available_dicts or dictionary_eddit in available_numbers:
-            
-            if dictionary_eddit in ["dictionary", "1"]:
-                eddit(dictionary_2, "dictionary")
-            elif dictionary_eddit in ["book links", "2"]:
-                eddit(book_links, "book links")
-            elif dictionary_eddit in ["book pages", "4"]:
-                eddit(book_pages, "book pages")
-            elif dictionary_eddit in ["windows shortcuts", "5"]:
-                eddit(windows_shortcuts, "windows shortcuts")
-            elif dictionary_eddit in ("languages", "6"):
-                eddit(languages, "languages")
-            
-
-            elif dictionary_eddit in ["codes", "passwords", "3"]:
-                pin = input("pleass enter password: ")
-                os.system("cls" if os.name == "nt" else "clear")
-                if attempts >= 4:
-                    alert_email()
-                if pin == password:
-                    alert("eddit")
-                    eddit(codes_passwords, "codes_passwords")
-                    
-                else:
-                    print("accses denied")
-                    attempts += 1
-                    codes_passwords["failed_attempts"] += 1
-                    update()
-        else:
-            print("dictionary not found")
-            print("available dictionaries")
-            for i in available_dicts:
-                print("-", i)
-
-    elif input_dict in ["change password", "9"]:
-        cp = input("please enter current password: ")
-        os.system("cls" if os.name == "nt" else "clear")
-        if attempts >= 4:
-            alert_email()
-        if cp == password:
-            pe1 = input("please enter new pasword: ")
-            pe2 = input("please confurme new pasword: ")
-            os.system("cls" if os.name == "nt" else "clear")
+        if password == "":
+            pe1 = input("please enter a password ")
+            pe2 = input("please conferm password ")
             if pe1 == pe2:
-                password = pe1
                 codes_passwords["password_main"] = pe1
-                update("password")  
-            alert(f"change password, new password is {pe1}")
+                password = pe1
+                update("password")
+        numb = 1
+        for num in available_dicts_and_actions:
+            print("-", numb, num)
+            numb += 1
+        input_dict = input("what dictionary or action do you want? ").strip().lower()
+        numb = 0
+
+        if input_dict in ["stop", "10"]:
+            update("all dictionaries")
+            print("Goodbye!")
+            time.sleep(0.5)
+            os.system("cls" if os.name == "nt" else "clear")
+            break
+        elif attempts == 4:
+                print("password entered too many times incorrectly")
+                alert_email()
+                exit()
+    
+        elif input_dict in ("dictionary", "1"):
+            find_dictionary(dictionary_2)
+        elif input_dict in ("book links", "2"):
+            find_dict(book_links)
+        elif input_dict in ("codes", "passwords", "3"):
+        
+            find_dict(codes_passwords)
+        elif input_dict in ("book pages", "4"):
+            find_book_pages()
+        elif input_dict in ("windows shortcuts", "5"):
+            find_dict(windows_shortcuts)
+        elif input_dict in ("languages", "6"):
+            translate_language()
+        elif input_dict in ["add to", "7"]:
+            dictionary_add = input("what dictionary do you want to add to? ")
+            if dictionary_add in available_dicts or dictionary_add in available_numbers:
+            
+                if dictionary_add in ["dictionary", "1"]:
+                    add(dictionary_2, "dictionary")
+                elif dictionary_add in ["book links", "2"]:
+                    add(book_links, "book links")
+                elif dictionary_add in ["book pages", "4"]:
+                    add(book_pages, "book pages")
+                elif dictionary_add in ["windows shortcuts", "5"]:
+                    add(windows_shortcuts, "windows shortcuts")
+                elif dictionary_add in ["languages", "6"]:
+                    add(languages, "languages")
+            
+
+                elif dictionary_add in ["codes", "passwords", "3"]:
+                    pin = input("pleass enter password: ")
+                    os.system("cls" if os.name == "nt" else "clear")
+                    if attempts >= 4:
+                        alert_email()
+                    if pin == password:
+                        alert("add")
+                        add(codes_passwords, "codes_passwords")
+                    
+                    else:
+                        print("accses denied")
+                        attempts += 1
+                        codes_passwords["failed_attempts"] += 1
+                        update()
+            else:
+                print("dictionary not found")
+                print("available dictionaries")
+                for i in available_dicts:
+                    print("-", i)
+    
+        elif input_dict in ["eddit", "8"]:
+            dictionary_eddit = input("what dictionary do you want to eddit ")
+            if dictionary_eddit in available_dicts or dictionary_eddit in available_numbers:
+            
+                if dictionary_eddit in ["dictionary", "1"]:
+                    eddit(dictionary_2, "dictionary")
+                elif dictionary_eddit in ["book links", "2"]:
+                    eddit(book_links, "book links")
+                elif dictionary_eddit in ["book pages", "4"]:
+                    eddit(book_pages, "book pages")
+                elif dictionary_eddit in ["windows shortcuts", "5"]:
+                    eddit(windows_shortcuts, "windows shortcuts")
+                elif dictionary_eddit in ("languages", "6"):
+                    eddit(languages, "languages")
+            
+
+                elif dictionary_eddit in ["codes", "passwords", "3"]:
+                    pin = input("pleass enter password: ")
+                    os.system("cls" if os.name == "nt" else "clear")
+                    if attempts >= 4:
+                        alert_email()
+                    if pin == password:
+                        alert("eddit")
+                        eddit(codes_passwords, "codes_passwords")
+                    
+                    else:
+                        print("accses denied")
+                        attempts += 1
+                        codes_passwords["failed_attempts"] += 1
+                        update()
+            else:
+                print("dictionary not found")
+                print("available dictionaries")
+                for i in available_dicts:
+                    print("-", i)
+
+        elif input_dict in ["change password", "9"]:
+            cp = input("please enter current password: ")
+            os.system("cls" if os.name == "nt" else "clear")
+            if attempts >= 4:
+                alert_email()
+            if cp == password:
+                pe1 = input("please enter new pasword: ")
+                pe2 = input("please confurme new pasword: ")
+                os.system("cls" if os.name == "nt" else "clear")
+                if pe1 == pe2:
+                    password = pe1
+                    codes_passwords["password_main"] = pe1
+                    update("password")  
+                alert(f"change password, new password is {pe1}")
+            else:
+                print("accses denied")
+                attempts += 1
+                codes_passwords["failed_attempts"] += 1
+                update()
         else:
-            print("accses denied")
-            attempts += 1
-            codes_passwords["failed_attempts"] += 1
-            update()
-    else:
-        print("dictionary not found")
-        print("here are the available dictionaries and actions")
+            print("dictionary not found")
+            print("here are the available dictionaries and actions")
