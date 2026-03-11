@@ -121,7 +121,8 @@ if send_alert:
     alert_email()
 
 def update(name="data"):
-    os.system("cls" if os.name == "nt" else "clear")
+    if name == "codes_passwords":
+        os.system("cls" if os.name == "nt" else "clear")
     print(name, "updated\n")
 
     # encrypt codes_passwords
@@ -153,56 +154,53 @@ def update(name="data"):
 def translate_language():
     while True:
         print("you can stop at anytime by typing qqwertyuiop")
-        text = input("enter word or 'word language': ").strip().lower()
 
-        if text == "qqwertyuiop":
-            break
+        user_input = input("press 1 for general word search, press 2 for specific word search: ").strip().lower()
 
-        parts = text.split()
+        if user_input == "qqwertyuiop":
+            return
 
-        # ---------- WORD ONLY ----------
-        if len(parts) == 1:
+        word = input("please enter word or phrase: ").strip().lower()
 
-            word = parts[0]
+        if word == "qqwertyuiop":
+            return
 
-            if word in languages:
-
-                print("\ntranslations for", word)
-
-                for lang, value in languages[word].items():
-                    print(f"{lang}:", value)
-
-                print()
-
+        if word not in languages:
+            matches = difflib.get_close_matches(word, languages.keys(), n=3)
+            if matches:
+                print("Did you mean:")
+                for m in matches:
+                    print("-", m)
             else:
-                matches = difflib.get_close_matches(word, languages.keys(), n=3)
+                print("word not found")
+            continue
 
+        # ---------- specific language ----------
+        if user_input == "2":
+
+            language = input("please enter language: ").strip().lower()
+
+            if language == "qqwertyuiop":
+                return
+
+            if language in languages[word]:
+                print(f"{word} in {language} is", languages[word][language])
+            else:
+                matches = difflib.get_close_matches(language, languages[word].keys(), n=3)
                 if matches:
                     print("Did you mean:")
-                    for word in matches:
-                        print("-", word)
-                else:
-                    print("word not found")
-
-        # ---------- WORD + LANGUAGE ----------
-        elif len(parts) == 2:
-
-            word, lang = parts
-
-            if word in languages:
-
-                if lang in languages[word]:
-
-                    print(f"\n{word} in {lang}:", languages[word][lang], "\n")
-
+                    for m in matches:
+                        print("-", m)
                 else:
                     print("language not found")
 
-            else:
-                print("word not found")
+        # ---------- general translation ----------
+        elif user_input == "1":
+            print(f"{word} translations:")
+            for language in languages[word]:
+                print(language, ":", languages[word][language])
 
-        else:
-            print("invalid input")
+            
 
 def find_dictionary(dictionary):
     while True:
