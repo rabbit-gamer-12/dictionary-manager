@@ -1,79 +1,47 @@
-Secure Dictionary Program
-=========================
+# Dictionary Manager App
 
-This is a Python-based secure dictionary and password manager program.
-It allows you to store, search, add, edit, and protect information using
-encryption and password-based access control.
+A runnable Python app for managing:
+- general dictionary entries
+- book links and page references
+- Windows shortcut notes
+- language translations
+- a password-protected encrypted vault for private notes
 
-Sensitive data is encrypted using the cryptography library (Fernet).
+## Quick start (run as an app)
 
+### Windows (easiest)
+1. Install Python 3.10+ from https://www.python.org/downloads/
+2. In this folder, double-click **`run_app.bat`**
 
-Requirements
-------------
-- Python 3.10 or newer
-- Internet connection (only required for email alerts)
-- The cryptography Python package
+That script installs dependencies and launches the app menu.
 
+### macOS / Linux
+From this repo folder:
 
-Installation (Windows)
-----------------------
+```bash
+./run_app.sh
+```
 
-1. Install Python
-   - Go to https://www.python.org/downloads/
-   - Download Python for Windows
-   - IMPORTANT: Check "Add Python to PATH" during installation
+### Manual run (all platforms)
 
-2. Download the Program
-   - Click the green "Code" button on GitHub
-   - Choose "Download ZIP"
-   - Extract the folder to your computer (Desktop is fine)
+```bash
+python -m pip install -r requirements.txt
+python "high school manager/high_school_manager.py"
+```
 
-3. Open Windows PowerShell
-   - Press Win + R
-   - Type: powershell
-   - Press Enter
+## First run behavior
+- You will be prompted to create a **master password**.
+- App data is stored in JSON files under `high school manager/`.
+- Vault secrets are encrypted using:
+  - `high school manager/secret.key`
+  - `high school manager/codes_passwords.enc`
 
-4. Navigate to the Project Folder
-   Example:
-   cd Desktop\your-project-folder-name
+## Optional: make a desktop executable (.exe)
+If you want a one-click executable with no terminal setup:
 
-5. Install Required Packages
-   Run:
-   python -m pip install -r requirements.txt
+```bash
+python -m pip install pyinstaller
+pyinstaller --onefile --name DictionaryManager "high school manager/high_school_manager.py"
+```
 
-
-Running the Program
--------------------
-
-Run the program using:
-python main.py
-
-(Replace main.py with the actual filename if different)
-
-
-Security Notes
---------------
-- DO NOT upload or share the following files:
-  - secret.key
-  - codes_passwords.enc
-
-These files contain encrypted or sensitive information.
-
-If you upload this project to GitHub:
-- Add secret.key and *.enc to .gitignore
-- Use example or empty data files only
-
-
-Features
---------
-- Encrypted password storage
-- Password-protected access
-- Failed login detection
-- Email alerts for suspicious activity
-- Editable dictionaries and book pages
-- Secure lock and unlock system
-- languge "thing"
-
-Author
-------
-Created by Reilly Martin
+Then run `dist/DictionaryManager.exe`.
