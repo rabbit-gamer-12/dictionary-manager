@@ -1,0 +1,13 @@
+{
+    "hello": {
+        "english": "hello",
+        "japanese": "こんにちは",
+        "spanish": "hola",
+        "french": "bonjour"
+    },
+    "thank you": {
+        "english": "thank you",
+        "japanese": "ありがとう",
+        "spanish": "gracias"
+    }
+}
