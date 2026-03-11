@@ -1,4 +1,4 @@
-Secure Dictionary Program
+WordVault
 =========================
 
 This is a Python-based secure dictionary and password manager program.
